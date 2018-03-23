@@ -19,3 +19,26 @@ console.log("--- To Hit rerolling ones --- ");
 for(var i = 2; i <= 6; i++) {
 	console.log(i + ": " + probabilityToHitWithLimitedReroll(i));
 }
+
+
+function roundToDecimals(val, numDecimals) {
+	return val.toFixed(numDecimals);
+}
+
+var table = $('<table/>').addClass('result-table');
+
+for(var i = 2; i <= 6; i++){
+	var diceProbability = probabilityToHitWithLimitedReroll(i)
+	diceProbability = roundToDecimals(diceProbability, 3);
+
+    var row = $('<tr/>');
+    var numCol = $('<td/>').text(i);
+    var resultCol = $('<td/>').text(diceProbability);
+
+    row.append(numCol);
+    row.append(resultCol);
+
+    table.append(row);
+}
+
+$('#result-container').append(table);
