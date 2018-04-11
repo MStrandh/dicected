@@ -10,14 +10,16 @@
 	}
 
 
+	var i;
+
 	console.log("--- To Hit rerolling all --- ");
-	for(var i = 2; i <= 6; i++) {
+	for(i = 2; i <= 6; i++) {
 		console.log(i + ": " + probabilityToHitWithRerollAll(i));
 	}
 
 
 	console.log("--- To Hit rerolling ones --- ");
-	for(var i = 2; i <= 6; i++) {
+	for(i = 2; i <= 6; i++) {
 		console.log(i + ": " + probabilityToHitWithLimitedReroll(i));
 	}
 
@@ -28,18 +30,18 @@
 
 	var table = $('<table/>').addClass('result-table');
 
-	for(var i = 2; i <= 6; i++){
-		var diceProbability = probabilityToHitWithLimitedReroll(i)
+	for(i = 2; i <= 6; i++){
+		var diceProbability = probabilityToHitWithLimitedReroll(i);
 		diceProbability = roundToDecimals(diceProbability, 3);
 
-	    var row = $('<tr/>');
-	    var numCol = $('<td/>').text(i);
-	    var resultCol = $('<td/>').text(diceProbability);
+		var row = $('<tr/>');
+		var numCol = $('<td/>').text(i);
+		var resultCol = $('<td/>').text(diceProbability);
 
-	    row.append(numCol);
-	    row.append(resultCol);
+		row.append(numCol);
+		row.append(resultCol);
 
-	    table.append(row);
+		table.append(row);
 	}
 
 	$('#result-container').append(table);

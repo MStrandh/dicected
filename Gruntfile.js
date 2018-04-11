@@ -22,7 +22,8 @@ module.exports = function(grunt) {
 			buildLibs: {
 				src: [
 					vendorJS,
-					'dev/js/**/*.js'
+					'dev/js/**/*.js',
+					'dev/js_app/DicectedArmyApp.js'
 				],
 
 				dest: 'build/js/' + minimizedJsFileName
@@ -41,7 +42,10 @@ module.exports = function(grunt) {
 				esnext: true
 			},
 
-			all: ['dev/js/**/*.js']
+			all: [
+				'dev/js/**/*.js',
+				'dev/js_app/**/*.js'
+			]
 		},
 
 
@@ -77,14 +81,15 @@ module.exports = function(grunt) {
 			options: {
 				startTag: '<!-- build:js js/' + minimizedJsFileName +' -->',
 				endTag: '<!-- endbuild -->',
-				fileTmpl: '\n<script type="text/javascript" src="%s"></script>\n',
+				fileTmpl: '\n\t<script type="text/javascript" src="%s"></script>\n',
 				appRoot: 'dev/'
 			},
 			debug: {
 				files: {
 					'dev/index.html': [
 						vendorJS,
-						'dev/js/**/*.js'
+						'dev/js/**/*.js',
+						'dev/js_app/DicectedArmyApp.js'
 					]
 				}
 			}
@@ -98,7 +103,8 @@ module.exports = function(grunt) {
 		watch: {
 			scripts: {
 				files: [
-					'dev/js/**/*.js'
+					'dev/js/**/*.js',
+					'dev/js_app/**/*.js'
 				],
 
 				tasks: [
