@@ -1,5 +1,3 @@
-
-
 (function(){
     console.log("Dicected - Death Guard");
 
@@ -7,5 +5,3 @@
 	console.log("Weapon AP: " + weapon.armourPiercing);
 	console.log("Weapon num shots: " + weapon.numShots);
 })();
-
-
