@@ -1,0 +1,34 @@
+{
+	"units": {
+		"Acolyte Hybrids": {
+			"slot": "troops",
+			"Acolyte Leader": 1,
+			"Acolyte Hybrid": 4
+		}
+	},
+	"unit": {
+		"Acolyte Hybrid": {
+			"movement": "6",
+			"weapon_skill": "3+",
+			"ballistic_skill": "4+",
+			"strength": "4",
+			"toughness": "3",
+			"wounds": "1",
+			"attacks": "2",
+			"leadership": "7",
+			"save": "5+"
+		},
+		"Acolyte Leader": {
+			"movement": "6",
+			"weapon_skill": "3+",
+			"ballistic_skill": "4+",
+			"strength": "4",
+			"toughness": "3",
+			"wounds": "1",
+			"attacks": "3",
+			"leadership": "8",
+			"save": "5+"
+		}
+	}
+	
+}

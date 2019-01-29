@@ -1,11 +1,14 @@
 (function(){
-    console.log("Dicected - Death Guard");
+    console.log("Dicected");
 
 	var weapon = new Weapon();
-	console.log("Weapon AP: " + weapon.armourPiercing);
-	console.log("Weapon num shots: " + weapon.numShots);
 
-	$.getJSON("assets/data/wh40k/orks/ranged.json", function(json) {
+
+	$.getJSON("assets/data/wh40k/genestealer_cult/ranged.json", function(json) {
+		console.log(json);
+	});
+
+	$.getJSON("assets/data/wh40k/genestealer_cult/units.json", function(json) {
 		console.log(json);
 	});
 })();
