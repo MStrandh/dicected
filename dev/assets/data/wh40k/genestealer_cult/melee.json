@@ -1,0 +1,50 @@
+{
+	"rending_claw": {
+		"name": "Rending claws",
+		"type": "melee",
+		"range": "melee",
+		"strength": "U",
+		"ap": "-1",
+		"damage": "1"
+	},
+	"lashwhip_bonesword": {
+		"name": "Lash whip and Bonesword",
+		"type": "melee",
+		"range": "melee",
+		"strength": "U",
+		"ap": "-2",
+		"damage": "1"
+	},
+	"bonesword": {
+		"name": "Bonesword",
+		"type": "melee",
+		"range": "melee",
+		"strength": "U",
+		"ap": "-2",
+		"damage": "1"
+	},
+	"heavy_rock_saw": {
+		"name": "Heavy Rock Saw",
+		"type": "melee",
+		"range": "melee",
+		"strength": "x2",
+		"ap": "-4",
+		"damage": "2"
+	},
+	"heavy_rock_drill": {
+		"name": "Heavy Rock Drill",
+		"type": "melee",
+		"range": "melee",
+		"strength": "x2",
+		"ap": "-3",
+		"damage": "1"
+	},
+	"heavy_rock_cutter": {
+		"name": "Heavy Rock Cutter",
+		"type": "melee",
+		"range": "melee",
+		"strength": "x2",
+		"ap": "-4",
+		"damage": "D3"
+	}
+}

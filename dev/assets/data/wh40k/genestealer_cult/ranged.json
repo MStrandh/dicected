@@ -1,10 +1,11 @@
 {
-	"Big shoota": {
-		"range": "36",
-		"type": "A 3",
+	"weapon_id": {
+		"name": "Name"
+		"range": "24",
+		"type": "A",
+		"shots": "3",
 		"strength": "5",
 		"ap": "0",
-		"damage": "3",
-		"points": "6"
+		"damage": "3"
 	}
 }
