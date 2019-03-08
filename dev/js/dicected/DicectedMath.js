@@ -7,12 +7,10 @@ class DicectedMath {
 		return (7 - val) / 6.0;
 	}
 
-	numHits(attackingWeapon) {
-		var weaponOwner = attackingWeapon.owner;
+	numHits(entity) {
+		var probToHit = this.diceProbability(entity.weaponSkill);
 
-		var probToHit = this.diceProbability(weaponOwner.weaponSkill);
-
-		return attackingWeapon.owner.attacks * probToHit;
+		return entity.attacks * probToHit;
 	}
 
 	numWounds(attackingWeapon, targetToughness, numHits) {

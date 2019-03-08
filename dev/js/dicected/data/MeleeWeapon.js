@@ -22,13 +22,6 @@ class MeleeWeapon {
 	}
 
 	get strength() {
-		if(this.weaponStrength == "U") {
-			return this.weaponOwner.strength;
-			
-		} else if(this.weaponStrength == "x2") {
-			return this.weaponOwner.strength * 2;
-		}
-		
 		return this.weaponStrength;
 	}
 
@@ -52,16 +45,5 @@ class MeleeWeapon {
 
 	get damage() {
 		return this.weaponDamage;
-	}
-
-	// ----------------------------------
-	// -- OWNER
-	// ----------------------------------
-	set owner(own) {
-		this.weaponOwner = own;
-	}
-
-	get owner() {
-		return this.weaponOwner;
 	}
 }

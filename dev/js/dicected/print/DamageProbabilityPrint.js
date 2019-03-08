@@ -10,8 +10,7 @@ class DamageProbabilityPrint {
 		var tHead = $("<thead/>");
 		var tHeadRow = $("<tr/>");
 
-		tHeadRow.append($("<th/>").text("Unit"));
-		tHeadRow.append($("<th/>").text("Weapon"));
+		tHeadRow.append($("<th/>").text("Model - Weapon"));
 		tHeadRow.append($("<th/>").text("Num Attacks"));
 		tHeadRow.append($("<th/>").text("Num Hits"));
 		tHeadRow.append($("<th/>").text("T3"));
@@ -31,21 +30,21 @@ class DamageProbabilityPrint {
 		element.append(table);
 	}
 
-	printWeapon(weapon) {
+	printArmedEntity(entity) {
 		var tBodyRow = $("<tr/>");
 
-		var numHits = this.dicectedMath.numHits(weapon);
+		var numHits = this.dicectedMath.numHits(entity);
+		var numHitsRounded = this.dicectedMath.roundToDecimals(numHits, 2);
 
-		tBodyRow.append($("<td/>").text(weapon.owner.name));
-		tBodyRow.append($("<td/>").text(weapon.name));
-		tBodyRow.append($("<td/>").text(weapon.owner.attacks));
-		tBodyRow.append($("<td/>").text(numHits));
+		tBodyRow.append($("<td/>").text(entity.toString()));
+		tBodyRow.append($("<td/>").text(entity.attacks));
+		tBodyRow.append($("<td/>").text(numHitsRounded));
 
 		for(var i = 3; i < 9; i++) {
-			var numWounds = this.dicectedMath.numWounds(weapon, i, numHits);
-			numWounds = this.dicectedMath.roundToDecimals(numWounds, 2);
+			var numWounds = this.dicectedMath.numWounds(entity, i, numHits);
+			var numWoundsRounded = this.dicectedMath.roundToDecimals(numWounds, 2);
 
-			tBodyRow.append($("<td/>").text(numWounds));
+			tBodyRow.append($("<td/>").text(numWoundsRounded));
 		}
 
 		this.tableBody.append(tBodyRow);

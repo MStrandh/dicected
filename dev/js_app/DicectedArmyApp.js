@@ -1,140 +1,48 @@
 (function(){
     console.log("Dicected");
 
-	var units = {};
-	var meleeWeapons = [];
-	var jsonMeleeWeapons;
+	var models = {};
+	var meleeWeapons = {};
+	var units = [];
 
-	$.when(
-		$.getJSON("assets/data/wh40k/genestealer_cult/melee.json"),
-		$.getJSON("assets/data/wh40k/genestealer_cult/units.json")
-	).done(function(melee, units) {
-		jsonMeleeWeapons = melee[0];
-		parseUnits(units[0]);
+	var printer = new DicectedPrinter();
 
-		launchApp();
-	});
+	var jsonParser = new DicectedJsonArmyParser();
+	jsonParser.addEventListener("done", doneParsing);
+	jsonParser.parse();
 	
-	function parseUnits(data) {
-		for (var v in data.types) {
-			var activeUnit = data.types[v];
+	function doneParsing() {
+		models = jsonParser.getModels();
+		meleeWeapons = jsonParser.getMeleeWeapons();
 
-			var unit = new Unit();
-			unit.name = activeUnit.name;
-			unit.movement = activeUnit.movement;
-			unit.weaponSkill = activeUnit.weapon_skill;
-			unit.ballisticSkill = activeUnit.ballistic_skill;
-			unit.strength = activeUnit.strength;
-			unit.toughness = activeUnit.toughness;
-			unit.wounds = activeUnit.wounds;
-			unit.attacks = activeUnit.attacks;
-			unit.leadership = activeUnit.leadership;
-			unit.save = activeUnit.save;
+		createUnits();
+		launchApp();
+	}
 
-			createWeaponsForUnit(unit, activeUnit.weapons);
+	function createUnits() {
+		var unit = new Unit();
 
-			units[v] = unit;
-		}
+		unit.add(1, new ArmedEntity(models.acolyte_leader, meleeWeapons.lashwhip_bonesword));
+		unit.add(2, new ArmedEntity(models.acolyte_hybrid, meleeWeapons.heavy_rock_saw));
+		unit.add(2, new ArmedEntity(models.acolyte_hybrid, meleeWeapons.rending_claw));
+
+		units.push(unit);
 	}
 
 	function launchApp() {
-		printUnits();
-		printWeapons();
+		printer.printUnits(models);
+		printer.printMeleeWeapons(meleeWeapons);
 
 		var dmgProb = new DamageProbabilityPrint();
 		dmgProb.printTo($("#result-container"));
 
-		for(var weapon in meleeWeapons) {
-			dmgProb.printWeapon(meleeWeapons[weapon]);	
+		for(var i = 0; i < units.length; i++) {
+			var unit = units[i];
+
+			for(var j = 0; j < unit.numArmedEntities; j++) {
+				var armedEntiy = unit.getEntityAt(j);
+				dmgProb.printArmedEntity(armedEntiy);
+			}
 		}
-		
-	}
-
-	function createWeaponsForUnit(unit, weapons) {
-		if(!weapons) {
-			return;
-		}
-
-		for(var i = 0; i < weapons.length; i++) {
-			var activeWeapon = jsonMeleeWeapons[weapons[i]];
-
-			var weapon = new MeleeWeapon();
-			weapon.name = activeWeapon.name;
-			weapon.strength = activeWeapon.strength;
-			weapon.armourPenetration = activeWeapon.ap;
-			weapon.damage = activeWeapon.damage;
-			weapon.owner = unit;
-
-			meleeWeapons.push(weapon);
-		}
-	}
-
-	function printUnits() {
-		var content = "<table>";
-
-		content += "<thead><tr>";
-		content += "<th>Name</th>";
-		content += "<th>M</th>";
-		content += "<th>WS</th>";
-		content += "<th>BS</th>";
-		content += "<th>S</th>";
-		content += "<th>T</th>";
-		content += "<th>W</th>";
-		content += "<th>A</th>";
-		content += "<th>LD</th>";
-		content += "<th>SV</th>";
-		content += "</tr></thead>";
-
-		content += "<tbody>";
-
-		for (var key in units) {
-			content += "<tr>"
-			content += "<td>" + units[key].name + "</td>";
-			content += "<td>" + units[key].movement + "</td>";
-			content += "<td>" + units[key].weaponSkill + "</td>";
-			content += "<td>" + units[key].ballisticSkill + "</td>";
-			content += "<td>" + units[key].strength + "</td>";
-			content += "<td>" + units[key].toughness + "</td>";
-			content += "<td>" + units[key].wounds + "</td>";
-			content += "<td>" + units[key].attacks + "</td>";
-			content += "<td>" + units[key].leadership + "</td>";
-			content += "<td>" + units[key].save + "</td>";
-
-			content += "</tr>";
-		}
-
-		content += "</tbody>";
-		content += "</table>";
-
-		$("#unit-container").append(content);
-	}
-
-	function printWeapons() {
-		var content = "<table>";
-
-		content += "<thead><tr>";
-		content += "<th>Name</th>";
-		content += "<th>S</th>";
-		content += "<th>AP</th>";
-		content += "<th>DMG</th>";
-		content += "</tr></thead>";
-
-		content += "<tbody>";
-
-		for (var key in meleeWeapons) {
-			content += "<tr>"
-
-			content += "<td>" + meleeWeapons[key].name + "</td>";
-			content += "<td>" + meleeWeapons[key].strength + "</td>";
-			content += "<td>" + meleeWeapons[key].armourPenetration + "</td>";
-			content += "<td>" + meleeWeapons[key].damage + "</td>";
-
-			content += "</tr>";
-		}
-
-		content += "</tbody>";
-		content += "</table>";
-
-		$("#weapon-container").append(content);
 	}
 })();
