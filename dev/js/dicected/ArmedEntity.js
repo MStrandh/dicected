@@ -47,7 +47,6 @@ class ArmedEntity {
 		return this.weaponEntity.damage;
 	}
 
-
 	// ----------------------------------
 	// -- MISC
 	// ----------------------------------
