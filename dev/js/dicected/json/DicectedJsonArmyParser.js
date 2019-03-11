@@ -5,8 +5,7 @@ class DicectedJsonArmyParser {
 
 		this.models = {};
 		this.meleeWeapons ={};
-
-		// this.jsonMeleeWeapons = [];
+		this.units = [];
 	}
 
 	getModels() {
@@ -21,17 +20,23 @@ class DicectedJsonArmyParser {
 		return this.rangedWeapons;
 	}
 
+	getUnits() {
+		return this.units;
+	}
+
 	parse() {
 		var that = this;
 
 		$.when(
 			$.getJSON("assets/data/wh40k/genestealer_cult/melee.json"),
-			$.getJSON("assets/data/wh40k/genestealer_cult/units.json")
-		).done(function(melee, models) {
+			$.getJSON("assets/data/wh40k/genestealer_cult/models.json"),
+			$.getJSON("assets/data/armies/gsc_test.json")
+		).done(function(melee, models, armylist) {
 			// that.jsonMeleeWeapons = melee[0];
 
 			that.parseModels(models[0]);
 			that.parseMeleeWeapons(melee[0]);
+			that.parseArmyList(armylist[0]);
 
 			that.dispatchDone("done");
 		});
@@ -48,7 +53,7 @@ class DicectedJsonArmyParser {
 	dispatchDone(label, ...args) {
 		let listeners = this.listeners.get(label);
 
-		if (listeners && listeners.length) {
+		if(listeners && listeners.length) {
 			listeners.forEach((listener) => {
 				listener(...args); 
 			});
@@ -60,8 +65,8 @@ class DicectedJsonArmyParser {
 	}
 	
 	parseModels(data) {
-		for (var v in data.models) {
-			var activemodel = data.models[v];
+		for(var v in data) {
+			var activemodel = data[v];
 
 			var model = new Model();
 			model.name = activemodel.name;
@@ -84,7 +89,7 @@ class DicectedJsonArmyParser {
 			return;
 		}
 
-		for (var v in data) {
+		for(var v in data) {
 			var activeWeapon = data[v];
 
 			var weapon = new MeleeWeapon();
@@ -94,6 +99,27 @@ class DicectedJsonArmyParser {
 			weapon.damage = activeWeapon.damage;
 
 			this.meleeWeapons[v] = weapon;
+		}
+	}
+
+	parseArmyList(data) {
+		for(var unitId in data) {	
+			var unitJson = data[unitId];
+			var unitModels = unitJson.models;
+
+			var unit = new Unit();
+
+			for(var i = 0; i < unitModels.length; i++) {
+				var unitAmount = unitModels[i].amount;
+				var unitModel = unitModels[i].model;
+				var unitMeleeWeapon = unitModels[i].melee_weapon;
+
+				var armedEntity = new ArmedEntity(this.models[unitModel], this.meleeWeapons[unitMeleeWeapon]);
+
+				unit.add(unitModels[i].amount, armedEntity);
+			}
+
+			this.units.push(unit);
 		}
 	}
 }

@@ -1,0 +1,48 @@
+{
+	"acolyte_hybrids": {
+		"name": "Acolyte Hybrids",
+		"models": [
+			{
+				"amount": 1,
+				"model": "acolyte_leader",
+				"melee_weapon": "lashwhip_bonesword"
+			},
+			{
+				"amount": 2,
+				"model": "acolyte_hybrid",
+				"melee_weapon": "rending_claw"
+			},
+			{
+				"amount": 2,
+				"model": "acolyte_hybrid",
+				"melee_weapon": "heavy_rock_saw"
+			}
+		]
+	},
+	"aberrants": {
+		"name": "Aberrants",
+		"models": [
+			{
+				"amount": 1,
+				"model": "aberrant_hypermorph",
+				"melee_weapon": "heavy_improvised_weapon",
+				"effects": {
+					"additional_attack": {
+						"num_attacks": 1,
+						"melee_weapon": "hypermorph_tail"
+					}
+				}
+			},
+			{
+				"amount": 2,
+				"model": "aberrant",
+				"melee_weapon": "power_pick"
+			},
+			{
+				"amount": 2,
+				"model": "aberrant",
+				"melee_weapon": "power_hammer"
+			}
+		]
+	}
+}

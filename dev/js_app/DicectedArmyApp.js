@@ -14,19 +14,9 @@
 	function doneParsing() {
 		models = jsonParser.getModels();
 		meleeWeapons = jsonParser.getMeleeWeapons();
+		units = jsonParser.getUnits();
 
-		createUnits();
 		launchApp();
-	}
-
-	function createUnits() {
-		var unit = new Unit();
-
-		unit.add(1, new ArmedEntity(models.acolyte_leader, meleeWeapons.lashwhip_bonesword));
-		unit.add(2, new ArmedEntity(models.acolyte_hybrid, meleeWeapons.heavy_rock_saw));
-		unit.add(2, new ArmedEntity(models.acolyte_hybrid, meleeWeapons.rending_claw));
-
-		units.push(unit);
 	}
 
 	function launchApp() {

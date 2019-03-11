@@ -46,5 +46,39 @@
 		"strength": "x2",
 		"ap": "-4",
 		"damage": "D3"
+	},
+	"power_pick": {
+		"name": "Power Pick",
+		"type": "melee",
+		"range": "melee",
+		"strength": "U",
+		"ap": "-2",
+		"damage": "D3"
+	},
+	"power_hammer": {
+		"name": "Power Hammer",
+		"type": "melee",
+		"range": "melee",
+		"strength": "x2",
+		"ap": "-3",
+		"damage": "3",
+		"special_rules": ["minus_one_to_hit"]
+	},
+	"heavy_improvised_weapon": {
+		"name": "Heavy Improvised Weapon",
+		"type": "melee",
+		"range": "melee",
+		"strength": "x2",
+		"ap": "-1",
+		"damage": "2",
+		"special_rules": ["double_hit_rolls"]
+	},
+	"hypermorph_tail": {
+		"name": "Hypermorph Tail",
+		"type": "melee",
+		"range": "melee",
+		"strength": "U",
+		"ap": "-1",
+		"damage": "1"
 	}
 }
