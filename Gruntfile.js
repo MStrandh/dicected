@@ -5,6 +5,8 @@ module.exports = function(grunt) {
 		'dev/js_lib/jquery.js'
 	];
 
+	var mainJS = "dev/js_app/DicectedTestApp.js";
+
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
@@ -23,7 +25,7 @@ module.exports = function(grunt) {
 				src: [
 					vendorJS,
 					'dev/js/**/*.js',
-					'dev/js_app/DicectedArmyApp.js'
+					mainJS
 				],
 
 				dest: 'build/js/' + minimizedJsFileName
@@ -89,7 +91,7 @@ module.exports = function(grunt) {
 					'dev/index.html': [
 						vendorJS,
 						'dev/js/**/*.js',
-						'dev/js_app/DicectedArmyApp.js'
+						mainJS
 					]
 				}
 			}

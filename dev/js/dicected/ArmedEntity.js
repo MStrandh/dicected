@@ -3,6 +3,7 @@ class ArmedEntity {
 	constructor(owner, weapon) {
 		this.ownerEntity = owner;
 		this.weaponEntity = weapon;
+		this.localEffects = [];
 	}
 
 	// ----------------------------------

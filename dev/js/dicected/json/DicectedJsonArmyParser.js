@@ -32,8 +32,6 @@ class DicectedJsonArmyParser {
 			$.getJSON("assets/data/wh40k/genestealer_cult/models.json"),
 			$.getJSON("assets/data/armies/gsc_test.json")
 		).done(function(melee, models, armylist) {
-			// that.jsonMeleeWeapons = melee[0];
-
 			that.parseModels(models[0]);
 			that.parseMeleeWeapons(melee[0]);
 			that.parseArmyList(armylist[0]);

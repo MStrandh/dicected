@@ -3,12 +3,8 @@ class DicectedMath {
 
 	}
 
-	diceProbability(val) {
-		return (7 - val) / 6.0;
-	}
-
 	numHits(entity) {
-		var probToHit = this.diceProbability(entity.weaponSkill);
+		var probToHit = DiceProbability.toRollEqualOrHigher(entity.weaponSkill);
 
 		return entity.attacks * probToHit;
 	}
